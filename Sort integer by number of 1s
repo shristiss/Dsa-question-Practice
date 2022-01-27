@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> sortByBits(vector<int>& arr) {
+        map<int,vector<int>>map;
+        vector<int>ans;
+        for(auto i:arr)
+        {
+            int x=__builtin_popcount(i);
+            map[x].push_back(i);
+        }
+        for(auto i:map)
+        {
+            sort(i.second.begin(),i.second.end());
+            for(auto j : i.second)
+                ans.push_back(j);
+        }
+        return ans;
+    }
+};
