@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string restoreString(string s, vector<int>& indices) {
+        //cycle sort
+    int i=0;
+        while(i<indices.size())
+        {
+            if(indices[i]!=i)
+            {
+                swap(s[i],s[indices[i]]);
+                swap(indices[i],indices[indices[i]]);
+            }
+            else i++;
+               
+        }
+        return s;
+    }
+};
