@@ -1,0 +1,25 @@
+class Solution {
+    void cal(vector<vector<int>>&v,vector<int>&temp,int start,int num,int n,int k)
+    {
+        if(num==k)
+        {
+            v.push_back(temp);
+            return;
+        }
+        for(int i=start;i<n;i++)
+        {
+            temp.push_back(i+1);
+            cal(v,temp,i+1,num+1,n,k);
+            temp.pop_back();
+        }
+    }
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>>v;
+        if(n<k) return v;
+        
+        vector<int>temp(0,k);
+        cal(v,temp,0,0,n,k);
+        return v;
+    }
+};
