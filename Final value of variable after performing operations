@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int finalValueAfterOperations(vector<string>& operations) {
+        int ans=0,finall=0;
+        for(int i=0;i<operations.size();i++)
+        {  ans=0;
+            string val=operations[i];
+            for(int j=0;j<val.size();j++)
+            {
+                if(val[j]=='-')
+                {
+                    ans-=1;
+                    break;
+                }
+                    else if(val[j]=='+')
+                    {
+                         ans+=1;;
+                        break;
+                    }
+                  }
+            finall+=ans;
+        }
+        return finall;
+    }
+};
