@@ -1,0 +1,27 @@
+class Solution {
+    bool check(string a,string b)
+    {
+        unordered_map<char,char>mp;
+        for(int i=0;i<a.size();i++)
+        {
+            if(mp.find(a[i])!=mp.end())
+            {
+                if(mp[a[i]]!=b[i])
+                    return false;
+            }
+            mp[a[i]]=b[i];
+        }
+        return true;
+    }
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+         vector<string>ans;
+        for(int i=0;i<words.size();i++)
+        {
+            if(check(words[i],pattern) && check(pattern,words[i]))
+                ans.push_back(words[i]);
+        }
+        return ans;
+        
+    }
+};
