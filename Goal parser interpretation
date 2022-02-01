@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string interpret(string command) {
+        string news;
+        for(int i=0;i<command.size();i++)
+        {
+            if(command[i]=='G')
+                news+="G";
+            else if(command[i]=='(' && command[i+1]==')')
+                news+="o";
+            else if(command[i]=='(' && command[i+1]!=')')
+                news+="al";
+        }
+        return news;
+    }
+};
