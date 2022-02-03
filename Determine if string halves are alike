@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool halvesAreAlike(string s) {
+        int count1=0,count2=0;
+        int n=s.length()/2;
+        int i,j;
+        for(i=0,j=n;j<s.length();j++,i++)
+        {
+            if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='O'||s[i]=='U'||s[i]=='I')
+                count1++;
+            if(s[j]=='a'||s[j]=='e'|| s[j]=='i' || s[j]=='o'|| s[j]=='u'||s[j]=='A'||s[j]=='E'||s[j]=='O'||s[j]=='U'||s[j]=='I')
+                count2++;
+        }
+        return count1==count2;
+    }
+};
