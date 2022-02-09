@@ -1,0 +1,22 @@
+class Solution {
+   void helper(TreeNode*root,int t,int sum,bool &ans)
+    {
+        if(root==NULL) return;
+        sum+=root->val;
+        if(root->left==NULL && root->right==NULL && sum==t) 
+        {
+            ans=1;
+            return;
+        }
+        helper(root->left,t,sum,ans);
+        helper(root->right,t,sum,ans);
+    }
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        int sum=0;
+        bool ans=0;
+        helper(root,targetSum,sum,ans);
+        return ans;
+        
+    }
+};
