@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+      int count=0,presum=0;
+        unordered_map<int,int>um;
+        for(auto &n:nums)
+        {
+            presum+=n;
+            if(presum==k) count++;
+            if(um.find(presum-k)!=um.end())
+            {
+                count+=um[presum-k];
+            }
+            um[presum]++;
+        }
+        return count;
+    }
+};
