@@ -1,0 +1,70 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+    ListNode* findMid(ListNode *head)
+    {
+        ListNode *fast=head->next,*slow=head;
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+    ListNode* merge(ListNode *left,ListNode*right)
+    {
+        if(left==NULL) return right;
+        if(right==NULL) return left;
+        ListNode dummy(0);
+        ListNode *p1=left,*p2=right,*p3=&dummy;
+        while(p1 && p2)
+        {
+            if(p1->val<p2->val)
+            {
+                p3->next=p1;
+                p1=p1->next;
+               
+            }
+            else
+            {
+                p3->next=p2;
+                p2=p2->next;
+              
+            }
+             p3=p3->next;
+        }
+           while(p1)
+        {
+            p3->next=p1;
+            p1=p1->next;
+            p3=p3->next;
+        }
+        while(p2)
+        {
+            p3->next=p2;
+            p2=p2->next;
+            p3=p3->next;
+        }
+        return dummy.next;
+    }
+public:
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+        ListNode *mid=findMid(head);
+        ListNode* left=head;
+        ListNode * right=mid->next;
+        mid->next=NULL;
+        left=sortList(left);
+        right=sortList(right);
+        ListNode* result=merge(left,right);
+        return result;
+    }
+};
