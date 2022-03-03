@@ -1,0 +1,31 @@
+class Solution {
+    vector<int>finall;
+   void bfs(TreeNode* root)
+    {  int ans=0;
+     
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int s=q.size();
+            vector<int>v;
+            for(int i=0;i<s;i++)
+            {
+                TreeNode* node=q.front();
+                q.pop();
+                if(node->left)q.push(node->left);
+                if(node->right) q.push(node->right);
+                v.push_back(node->val);
+            }
+            ans=*max_element(v.begin(),v.end());
+            finall.push_back(ans);
+        }
+       
+    }
+public:
+    vector<int> largestValues(TreeNode* root) {
+        if(root==NULL) return finall;
+         bfs(root);
+        return finall;
+    }
+};
