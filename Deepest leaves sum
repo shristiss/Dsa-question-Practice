@@ -1,0 +1,20 @@
+class Solution {
+    int sum(TreeNode* root,int depth,int curr)
+    {
+        if(!root)return 0;
+        if(curr==depth-1)return root->val;
+        return (sum(root->left,depth,curr+1)+sum(root->right,depth,curr+1));
+    }
+    int maxdepth(TreeNode* root)
+    {
+        if(root==NULL) return 0;
+        int left=maxdepth(root->left);
+        int right=maxdepth(root->right);
+        return 1+max(left,right);
+    }
+public:
+    int deepestLeavesSum(TreeNode* root) {
+      int ans =  maxdepth(root);
+        return sum(root,ans,0);
+    }
+};
