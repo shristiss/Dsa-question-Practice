@@ -1,0 +1,12 @@
+class Solution {
+    bool isSubTree(TreeNode*root, TreeNode *subRoot)
+    {
+        if(root==NULL || subRoot==NULL) return (root==subRoot);
+        return (root->val==subRoot->val)&& isSubTree(root->left,subRoot->left)&& isSubTree(root->right,subRoot->right);
+    }
+public:
+    bool isSubtree(TreeNode* s, TreeNode* t) {
+        if(!s) return false;
+        return isSubTree(s,t) || isSubtree(s->left,t) || isSubtree(s->right,t);
+    }
+};
