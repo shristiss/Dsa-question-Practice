@@ -1,0 +1,17 @@
+class Solution {
+    void helper(TreeNode* root)
+    {
+        if(root==NULL) return;
+        TreeNode* l=root->left;
+        TreeNode* r=root->right;
+        helper(root->left);
+        helper(root->right);
+        root->left=r;
+        root->right=l;
+    }
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        helper(root);
+        return root;
+    }
+};
