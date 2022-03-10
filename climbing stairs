@@ -1,0 +1,23 @@
+   int climbStairs(int n) {
+        //tabular
+       int dp[n+1];
+        for(int i=0;i<n;i++) dp[i]=0;
+        dp[1]=1;
+        if(n>=2) dp[2]=2;
+        for(int i=3;i<=n;i++)
+            dp[i]=dp[i-1]+dp[i-2];
+        return dp[n];
+    }
+};
+/* memoization 
+        int t[46]={0};
+        if(n==1){t[1]=1;
+                 return 1;
+                }
+        if(n==2){
+            t[2]=2;
+            return 2;
+        }
+       else if(t[n]!=0) return t[n];
+        t[n]=climbStairs(n-1)+climbStairs(n-2);
+        return t[n];*/
