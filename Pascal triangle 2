@@ -1,0 +1,12 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        if(rowIndex==0)return {1};
+        vector<int>currrow={1};
+        vector<int>prevrow=getRow(rowIndex-1);
+        for(int i=1;i<rowIndex;i++)
+            currrow.push_back(prevrow[i-1]+prevrow[i]);
+        currrow.push_back(1);
+        return currrow;
+    }
+};
