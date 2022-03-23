@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void helper(TreeNode *root,int &md,int &l,int d)
+    {
+        if(root==NULL) return ;
+        helper(root->left,md,l,d+1);
+        helper(root->right,md,l,d+1);
+        if(d>md)
+        {
+            md=d;
+            l=root->val;
+        }
+ }
+    int findBottomLeftValue(TreeNode* root) {
+        int maxD=0;
+        int leftv=root->val;
+        int depth=0;
+        helper(root,maxD,leftv,depth);
+        
+       return leftv;
+    }
+};
