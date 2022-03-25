@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ l1: 7->2->4->3
+l2: 0->5->6->4
+ */
+class Solution {
+   ListNode* addD(ListNode* t1,ListNode *t2,int &carry)
+    {
+        if(t1==NULL && t2==NULL)return NULL;
+        ListNode *newn=new ListNode(-1);
+        newn->next=addD(t1->next,t2->next,carry);
+        
+        newn->val=(t1->val+t2->val+carry)%10;
+        carry=(t1->val+t2->val+carry)/10;
+        return newn;
+    }
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *p1=l1,*p2=l2;
+        
+        while(p1 || p2)
+        {
+            if(p1==NULL)
+            {
+                ListNode *newn=new ListNode(0);
+                newn->next=l1;
+                l1=newn;
+                p2=p2->next;
+            }
+           else if(p2==NULL)
+            {
+                ListNode *newn=new ListNode(0);
+                newn->next=l2;
+                l2=newn;
+                p1=p1->next;
+            }
+            else{
+                p1=p1->next;
+                p2=p2->next;
+            }
+        }
+        int carry=0;
+        ListNode *dummy=new ListNode(-1);
+        dummy->next=addD(l1,l2,carry);
+        if(carry!=0)
+        {
+            ListNode *newn=new ListNode(carry);
+            newn->next=dummy->next;
+            dummy->next=newn;
+        }
+        return dummy->next;
+    }
+};
