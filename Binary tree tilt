@@ -1,0 +1,19 @@
+class Solution {
+    int helper(TreeNode *root)
+    {
+        if(!root) return 0;
+        else{
+            int leftval=helper(root->left);
+            int rightval=helper(root->right);
+            tiltsum+=abs(leftval-rightval);
+            return leftval+rightval+root->val;
+        }
+    }
+public:
+    int tiltsum;
+    int findTilt(TreeNode* root) {
+        
+        helper(root);
+        return tiltsum;
+    }
+};
