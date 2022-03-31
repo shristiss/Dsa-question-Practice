@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maximumDifference(vector<int>& nums) {
+        int minv=nums[0];
+        int maxprofit=0;
+        for(int i=1;i<nums.size();i++)
+        {
+            minv=min(minv,nums[i]);
+            maxprofit=max(maxprofit,nums[i]-minv);
+        }
+   return maxprofit==0?-1:maxprofit;
+    }
+};
