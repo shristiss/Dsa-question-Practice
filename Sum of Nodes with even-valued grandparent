@@ -1,0 +1,15 @@
+class Solution {
+    void findgp(TreeNode *root,int &ans,TreeNode* p,TreeNode* gp)
+    {
+        if(root==NULL)return;
+        findgp(root->left,ans,root,p);
+        if(gp!=NULL && gp->val%2==0)ans+=root->val;
+        findgp(root->right,ans,root,p);
+    }
+public:
+    int sumEvenGrandparent(TreeNode* root) {
+        int ans=0;
+        findgp(root,ans,NULL,NULL);
+        return ans;
+    }
+};
