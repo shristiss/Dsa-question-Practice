@@ -1,0 +1,16 @@
+int longestSubstrDistinctChars (string S)
+{
+    // your code here
+    int maxans=INT_MIN;
+    for(int i=0;i<S.size();i++)
+    {
+        vector<char> v(256,0);
+        for(int j=i;j<S.size();j++)
+        {
+            if(v[S[j]]==1)break;
+            v[S[j]]=1;
+            maxans=max(maxans,j-i+1);
+        }
+    }
+    return maxans;
+}
