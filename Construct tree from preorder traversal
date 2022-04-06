@@ -1,0 +1,21 @@
+struct Node *helper(int n,int pre[],char preLN[],int &i)
+{
+    
+    int val=pre[i];
+    struct Node* newnode=new struct Node(val);
+    if(preLN[i]!='L')
+    {
+        i++;
+        newnode->left=helper(n,pre,preLN,i);
+        newnode->right=helper(n,pre,preLN,i);
+    }
+    else i++;
+    return newnode;
+}
+struct Node *constructTree(int n, int pre[], char preLN[])
+{
+    // Code here
+    int i=0;
+   return helper(n,pre,preLN,i);
+   
+}
