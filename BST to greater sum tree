@@ -1,0 +1,17 @@
+class Solution {
+   
+    void neworder(TreeNode *root,int &count)
+    {
+        if(root==NULL)return;
+        neworder(root->right,count);
+        count+=root->val;
+        root->val=count;
+        neworder(root->left,count);
+        }
+public:
+    TreeNode* bstToGst(TreeNode* root) {
+        int count=0;
+        neworder(root,count);
+        return root;
+    }
+};
