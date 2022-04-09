@@ -1,0 +1,48 @@
+class Solution {
+    vector<int>newarr;
+    void mergeInSortedOrder(vector<int>& nums1, vector<int>& nums2)
+    {
+        int i=0,j=0,n=nums1.size(),m=nums2.size();
+        while(i<n && j<m)
+        {
+           if(nums1[i]<nums2[j])
+            {
+            newarr.push_back(nums1[i]);
+            i++;
+            }  
+            else if(nums1[i]>nums2[j])
+            {
+                newarr.push_back(nums2[j]);
+                j++;
+            }
+            else{
+                newarr.push_back(nums1[i]);
+                i++;
+            }
+        }
+        while(i<n)
+        {
+            newarr.push_back(nums1[i++]);
+        }
+         while(j<m)
+        {
+            newarr.push_back(nums2[j++]);
+        }
+       
+    }
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        mergeInSortedOrder(nums1,nums2);
+        double median;
+        int size=newarr.size();
+        if(size%2==0)
+        {
+            median=(newarr[(size-1)/2]+newarr[size/2])/2.0;
+        }
+        else{
+            int x=size/2;
+            median=newarr[x];
+        }
+        return median;
+    }
+};
