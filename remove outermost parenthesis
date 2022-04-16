@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        int i=0,x=0;
+        stack<char>st;
+        string ans="";
+        while(i<s.length())
+        {
+          if(s[i]=='(')
+          {
+              if(x>0)ans+=s[i];
+              x++;
+          }
+            else if(s[i]==')')
+            {
+                if(x>1)ans+=s[i];
+                x--;
+            }
+            i++;
+        }
+        
+        return ans;
+    }
+};
