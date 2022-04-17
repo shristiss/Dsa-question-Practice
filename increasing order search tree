@@ -1,0 +1,27 @@
+class Solution {
+    void inorder(TreeNode *root,vector<TreeNode *>&v)
+    {
+        if(root)
+        {
+            inorder(root->left,v);
+            v.push_back(root);
+            inorder(root->right,v);
+        }
+    }
+    TreeNode* helper(TreeNode* root,vector<TreeNode*>v,int i)
+    {
+        if(i>=v.size())return NULL;
+            TreeNode *x=new TreeNode(v[i]->val);
+             x->left=NULL;
+             x->right=helper(root,v,i+1);
+        
+       return x;
+    }
+public:
+    TreeNode* increasingBST(TreeNode* root) {
+       vector<TreeNode*>v;
+        inorder(root,v);
+       int i=0;
+      return  helper(root,v,i);
+    }
+};
