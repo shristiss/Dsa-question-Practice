@@ -37,3 +37,32 @@ public:
     }
     
 };
+//Second approach(better)
+class Solution {
+    
+    void helper(TreeNode *root,TreeNode*& first,TreeNode*& end,TreeNode*& prev)
+    {
+      if(root==NULL)return;
+        helper(root->left,first,end,prev);
+        if(prev)
+        {
+            if(prev->val>root->val)
+            {
+             if(first==NULL)
+                {
+                  first=prev;
+                 }
+                end=root;
+            }
+           
+        }
+        prev=root;
+        helper(root->right,first,end,prev);
+    }
+public:
+    void recoverTree(TreeNode* root) {
+       TreeNode *first=NULL,*end=NULL,*prev=NULL;
+        helper(root,first,end,prev);
+        swap(first->val,end->val);
+    }
+};
