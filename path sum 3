@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int ans=0;int target;
+    void recur(TreeNode* root, double& val, int& target) {
+        if (root == nullptr) return ;
+        val += root->val;
+        if (val == target) ans++;
+        recur(root->left, val, target);
+        recur(root->right, val, target);
+        val -= root->val;
+        
+    }
+    int pathSum(TreeNode* root, int targetSum) {
+        if (root == nullptr) return 0;
+        double val = 0;
+        recur(root, val, targetSum);
+        pathSum(root->left, targetSum);
+        pathSum(root->right, targetSum);
+        return ans;
+    }
+};
