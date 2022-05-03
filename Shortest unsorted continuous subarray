@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        int minwin=INT_MAX,maxwin=INT_MIN;
+       int l=0,h=nums.size()-1;
+        while(l+1<nums.size() && nums[l]<=nums[l+1])l++;
+        while(h-1>=0 && nums[h]>=nums[h-1])h--;
+        if(l==nums.size()-1)return 0;
+        for(int i=l;i<=h;i++)
+        {
+            minwin=min(minwin,nums[i]);
+            maxwin=max(maxwin,nums[i]);
+        }
+        while(l-1>=0 && nums[l-1]>minwin)l--;
+        while(h+1<=nums.size()-1 && nums[h+1]<maxwin)h++;
+        return h-l+1;
+    }
+};
