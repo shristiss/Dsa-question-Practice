@@ -1,0 +1,12 @@
+int isSumProperty(struct node* root)
+{
+    int sum=0;
+    if(root==NULL)return 0;
+    if(root->left)sum+=root->left->val;
+    if(root->right)sum+=root->right->val;
+    if(sum==root->val)
+    {
+        return isSumProperty(root->left)+isSumProperty(root->right);
+    }
+    return -1;
+}
