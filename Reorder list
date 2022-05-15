@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        stack<ListNode*>st;
+        ListNode *temp=head;
+        int count=0;
+        while(temp)
+        {
+            st.push(temp);
+            count++;
+            temp=temp->next;
+        }
+        temp=head;
+        
+       for(int i=0;i<count/2;i++)
+       {
+           ListNode *help=st.top();
+           st.pop();
+           help->next=temp->next;
+           temp->next=help;
+           temp=temp->next->next;
+       }
+        temp->next=NULL;
+    }
+};
