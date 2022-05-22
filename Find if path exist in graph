@@ -1,0 +1,23 @@
+class Solution {
+   
+    bool haspath(vector<vector<int>>& edges,int s,int d, vector<bool>&visited)
+    {
+        if(source==destination)return true;
+        visited[source]=true;
+        for(auto child:edges[source])
+        {
+            if(!visited[i])
+            {
+               bool ans= haspath(edges,child,destination,visited);
+                if(ans)return ture;
+            }
+        }
+        return false;
+    }
+    
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+         vector<bool>visited(n);
+      return haspath(edges,source,destination,visited);
+    }
+};
