@@ -1,0 +1,50 @@
+class Solution {
+    int dp[601][101][101];
+    int findzero(string s)
+    {
+        int ans=0;
+        for(int i=0;i<s.size();i++ )
+        {
+            if(s[i]=='0')ans++;
+        }
+        return ans;
+    }
+    int findones(string s)
+    {
+        int ans=0;
+        for(int i=0;i<s.size();i++ )
+        {
+            if(s[i]=='1')ans++;
+        }
+        return ans;
+    }
+    int helper(vector<string>&strs,int m,int n,int index)
+    {
+        if(index>=strs.size() || m+n==0)return 0;
+        if(dp[index][m][n]!=-1)return dp[index][m][n];
+       int add=0,withoutadd=0;
+        int z=findzero(strs[index]);
+        int o=findones(strs[index]);
+            if(z<=m && o<=n)
+            {
+                add= 1+  helper(strs,m-z,n-o,index+1);
+               }
+        withoutadd= helper(strs,m,n,index+1);
+        if(add>withoutadd){
+            dp[index][m][n]=add;
+        }
+       else dp[index][m][n]=withoutadd;
+        return dp[index][m][n];
+        
+    }
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        memset(dp,-1,sizeof(dp));
+        int ones=0,zeroes=0;
+        vector<string>ds;
+        int ans=INT_MIN;
+        int index=0;
+       return helper(strs,m,n,index);
+         
+    }
+};
