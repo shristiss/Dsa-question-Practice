@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        int l=0,h=s.size()-1;
+        while(l<h)
+        {
+            if( (s[l]=='a'||s[l]=='i'||s[l]=='e'||s[l]=='o'||s[l]=='u'||s[l]=='A'||s[l]=='E'||s[l]=='O'||s[l]=='U'||s[l]=='I') && (s[h]=='a'||s[h]=='i'||s[h]=='e'||s[h]=='o'||s[h]=='u'||s[h]=='E'||s[h]=='O'||s[h]=='U'||s[h]=='I'||s[h]=='A'))
+            {
+                swap(s[l++],s[h--]);
+            }
+          else if( !(s[l]=='a'||s[l]=='i'||s[l]=='e'||s[l]=='o'||s[l]=='u'||s[l]=='A'||s[l]=='E'||s[l]=='O'||s[l]=='U'||s[l]=='I'))l++; 
+           else if(!(s[h]=='a'||s[h]=='i'||s[h]=='e'||s[h]=='o'||s[h]=='u'||s[h]=='E'||s[h]=='O'||s[h]=='U'||s[h]=='I'||s[h]=='A')) h--;
+        }
+        return s;
+    }
+};
