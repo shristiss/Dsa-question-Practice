@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end()); //1 2 2 3 5
+        vector<int>ans;
+        int low=0,high=nums.size()-1;
+        while(low<high)
+        {
+            int mid=(low+high)/2;
+            cout<<mid<<" ";
+            if(nums[mid]==target)
+            {
+                ans.push_back(mid);
+                cout<<mid<<" ";
+                int x=mid,y=mid;
+                while(x-1>=0 && nums[x-1]==target )
+                {
+                    ans.push_back(x-1);
+                    x--;
+                }
+                while( y+1<nums.size()&& nums[y+1]==target )
+                {
+                     ans.push_back(y+1);
+                    y++;
+                }
+               return ans;
+            }
+            else if(nums[mid]>target)low=mid+1;
+            else high=mid-1;
+        }
+        return ans;
+    }
+};
