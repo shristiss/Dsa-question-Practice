@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        if(n==1)return true;
+        else if(n==2)return true;
+        else if(n==3)return false;
+       vector<int>temp;
+        int rem=0;
+        while(n)
+        {
+            rem=n%2;
+            temp.push_back(rem);
+            n/=2;
+        }
+       int i=0,j=1,k=2;
+        while(i<=temp.size()-3)
+        {
+            if(temp[i]!=temp[j] && temp[i]==temp[k] && temp[j]!=temp[k])
+            {
+                cout<<i<<" "<<j<<" "<<k<<endl;
+                i++;
+                j++;
+                k++;
+            }
+            else return false;
+        }
+        return true;
+    }
+};
