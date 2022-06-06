@@ -1,0 +1,50 @@
+// //class Solution {
+//     int helper(vector<int>nums,int i)
+//     {
+//         if(i<0)return 0;
+//         int take=nums[i]+helper(nums,i-2);
+//         int nottake=helper(nums,i-1);
+//         return max(take,nottake);
+//     }
+// public:
+//     int rob(vector<int>& nums) {
+//         int n=nums.size()-1;
+//         return helper(nums,n);
+//     }
+// };
+// class Solution {
+//    int helper(vector<int>nums,int arr[],int i)
+//     {
+//         if(i<0)return 0;
+//         if(arr[i]!=-1)return arr[i];
+//         return max(helper(nums,arr,i-2)+nums[i],helper(nums,arr,i-1));
+//     }
+// public:
+//     int rob(vector<int>& nums) {
+//         int arr[nums.size()];
+//         for(int i=0;i<nums.size();i++)
+//             arr[i]=-1;
+//        return helper(nums,arr,nums.size()-1);
+//     }
+// };
+class Solution{
+public:
+    int rob(vector<int>&nums)
+    {
+        if(nums.size()==1)return nums[0];
+        int n=nums.size();
+        int dp[n];
+        for(int i=0;i<nums.size();i++)
+        {
+            dp[i]=-1;
+        }
+        int ans=0;
+        dp[0]=nums[0];
+        dp[1]=max(nums[0],nums[1]);
+        for(int i=2;i<nums.size();i++)
+        {
+            dp[i]=max(dp[i-1],nums[i]+dp[i-2]);
+        }
+        return dp[nums.size()-1];
+    }
+};
