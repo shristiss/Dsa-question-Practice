@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int divisorSubstrings(int num, int k) {
+        int check=num;
+        string s=to_string(num);
+        int ans=0;
+        int i=0,j=0,n=s.length();
+        while(i<=n-k)
+        {
+            string temp=s.substr(i,k);
+            //cout<<temp<<" ";
+            i++;
+            int xx=stoi(temp);
+           // cout<<xx<<" ";
+            if(xx==0)continue;
+            if(check%xx==0)ans++;
+            //cout<<ans<<" ";
+        }
+        return ans;
+    }
+};
