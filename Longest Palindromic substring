@@ -1,0 +1,33 @@
+class Solution {
+    int dp[1001][1001];
+    bool helper(string s,int low,int high,string &ans)
+    {
+        if(low>high)return true;
+        if(dp[low][high]!=-1)return dp[low][high];
+        bool found=false;
+        if(s[low]==s[high])
+        {
+          
+            found=true && helper(s,low+1,high-1,ans);
+            
+        }
+        helper(s,low+1,high,ans);
+        helper(s,low,high-1,ans);
+        if(found && high-low+1>ans.length())
+        {
+           //cout<<"omk"<<endl;
+            ans=s.substr(low,high-low+1);
+            //cout<<ans<<" ";
+        }
+        dp[low][high]=found;
+        return found;
+    }
+public:
+    string longestPalindrome(string s) {
+        memset(dp,-1,sizeof(dp));
+        int left=0,right=s.length()-1;
+        string ans="";
+        helper(s,left,right,ans);
+        return ans;
+    }
+};
