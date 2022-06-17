@@ -1,0 +1,27 @@
+class Solution {
+public:
+    #define no_camera 0
+    #define has_camera 2
+    #define not_needed 1
+    int ans=0;
+    int dfs(TreeNode *root)
+    {
+        if(!root)return not_needed;
+        int l=dfs(root->left);
+        int r=dfs(root->right);
+        if(l==no_camera || r==no_camera)
+        {
+            ans++;
+            return has_camera;
+        }
+        else if(l==has_camera || r==has_camera)
+        {
+            return not_needed;
+        }
+        else return no_camera;
+    }
+    int minCameraCover(TreeNode* root) {
+        if(dfs(root)==no_camera)ans++;
+        return ans;
+    }
+};
