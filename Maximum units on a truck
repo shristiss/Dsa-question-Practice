@@ -1,0 +1,31 @@
+bool cmp(vector<int>&a,vector<int>&b)
+{
+  return a[1]>b[1];
+}
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+        sort(boxTypes.begin(),boxTypes.end(),cmp);
+       for(int i=0;i<boxTypes.size();i++)cout<<boxTypes[i][0]<<" "<<boxTypes[i][1]<<" ";
+        int temp=0,val=0;
+      
+        for(int i=0;i<boxTypes.size();i++)
+        {
+           if(val+boxTypes[i][0]<truckSize) 
+           {
+               temp+=boxTypes[i][0]*boxTypes[i][1];
+              //cout<<temp<<" ";
+               val+=boxTypes[i][0];
+           }
+            else{
+               
+                int remain=(truckSize-val)*boxTypes[i][1];
+                temp+=remain;
+                break;
+                
+            }
+            
+        }
+        return temp;
+    }
+};
