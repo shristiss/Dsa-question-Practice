@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& hC, vector<int>& vC) {
+        hC.push_back(h);
+        sort(hC.begin(),hC.end());
+        int maxh=hC[0];
+        for(int i=1;i<hC.size();i++)
+        {
+            maxh=max(hC[i]-hC[i-1],maxh);
+        }
+        vC.push_back(w);
+        sort(vC.begin(),vC.end());
+        int maxw=vC[0];
+        for(int j=1;j<vC.size();j++)
+        {
+            maxw=max(maxw,vC[j]-vC[j-1]);
+        }
+        return (1LL*maxh*maxw)%1000000007;
+    }
+};
