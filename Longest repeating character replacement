@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        unordered_map<char,int>mp;
+        int i=0,j=0;
+        int ans=-1,maxcount=0;
+        while(j<s.size())
+        {
+            mp[s[j]]++;
+            maxcount=max(maxcount,mp[s[j]]);
+           int currlen=j-i+1;
+            if(currlen-maxcount>k)
+            {
+                mp[s[i]]--;
+                i++;
+            }
+             currlen=j-i+1;
+            ans=max(ans,currlen);
+            j++;
+        }
+        return ans;
+    }
+};
