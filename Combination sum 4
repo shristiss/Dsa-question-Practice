@@ -1,0 +1,21 @@
+class Solution {
+    void helper(vector<int>&nums,int target, int sum,int &count)
+    {
+        if(sum>target)return;
+        if(sum==target)
+        {
+            count++;
+            return;
+        }
+      for(auto i:nums)
+          helper(nums,target,sum+i,count);
+    }
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        
+        int sum=0;
+        int count=0,i=0;
+        helper(nums,target,sum,count);
+        return count;
+    }
+};
