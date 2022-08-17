@@ -1,0 +1,45 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+          map<char,string>morse;
+        morse.insert({'a',".-"});
+        morse.insert({'b',"-..."});
+        morse.insert({'c',"-.-."});
+        morse.insert({'d',"-.."});
+        morse.insert({'e',"."});
+        morse.insert({'f',"..-."});
+        morse.insert({'g',"--."});
+        morse.insert({'h',"...."});
+        morse.insert({'i',".."});
+        morse.insert({'j',".---"});
+        morse.insert({'k',"-.-"});
+        morse.insert({'l',".-.."});
+        morse.insert({'m',"--"});
+        morse.insert({'n',"-."});
+        morse.insert({'o',"---"});
+        morse.insert({'p',".--."});
+        morse.insert({'q',"--.-"});
+        morse.insert({'r',".-."});
+        morse.insert({'s',"..."});
+        morse.insert({'t',"-"});
+        morse.insert({'u',"..-"});
+        morse.insert({'v',"...-"});
+        morse.insert({'w',".--"});
+        morse.insert({'x',"-..-"});
+        morse.insert({'y',"-.--"});
+        morse.insert({'z',"--.."});
+        unordered_set<string>s;
+        for(int i=0;i<words.size();i++)
+        {
+            string temp=words[i];
+            string res=" ";
+            for(int j=0;j<temp.length();j++)
+            {
+                map<char,string>::iterator it=morse.find(temp[j]);
+                res+=it->second;
+            }
+            s.insert(res);
+        }
+        return s.size();
+    }
+};
