@@ -1,0 +1,14 @@
+int Solution::maxProduct(const vector<int> &A) {
+    if(A.size()==0)return 0;
+    if(A.size()==1)return A[0];
+       int ans=INT_MIN;
+    int choice1,choice2,maxp=A[0],minp=A[0];
+    for(int i=1;i<A.size();i++)
+    {
+        if(A[i]<0)swap(maxp,minp);
+        maxp=max(A[i],maxp*A[i]);
+        minp=min(A[i],minp*A[i]);
+        ans=max(ans,maxp);
+    }
+    return ans;
+}
