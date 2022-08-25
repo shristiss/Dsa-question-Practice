@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+      unordered_map<char,int>mp;
+      unordered_map<char,int>ump;
+        for(int i=0;i<ransomNote.size();i++)
+        {
+            mp[ransomNote[i]]++;
+        }
+        for(int j=0;j<magazine.size();j++)
+        {
+            ump[magazine[j]]++;
+        }
+        for(auto &i:ransomNote)
+        {
+            if(ump.find(i)!=ump.end() && mp[i]<=ump[i])
+            {
+                mp[i]--;
+                ump[i]--;
+                if(mp[i]==0)mp.erase(i);
+                if(ump[i]==0)ump.erase(i);
+            }
+            else return false;
+        }
+        if(mp.empty())return true;
+        return false;
+    }
+};
