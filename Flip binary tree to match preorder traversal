@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool dfs(TreeNode* root, vector<int>& voyage, int& start, vector<int>& res){
+        
+        if(!root) return true; // empty tree condition
+        
+        // check for root node
+        if(root->val != voyage[start]) return false; // if root itself not equal then flipping not possible
+        
+        // else -> means root val == voyage start value -> Do preorder and check if left child val is not equal then do flipping i.e reverse i.e call right then left otherwise call normal preorder
+        start++;
+        if(root->left && root->left->val != voyage[start]){
+            // Before Flipping add node to res arr
+            res.push_back(root->val);
+            // flipping
+            return dfs(root->right, voyage, start,res) && dfs(root->left, voyage, start,res);
+        }
+        else{
+            
+            // Normal preorder
+            return dfs(root->left, voyage, start,res) && dfs(root->right, voyage, start,res);
+        
+        }
+    }
+    vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
+        
+        int start = 0;
+        vector<int> res;
+        if(dfs(root, voyage, start,res)){
+            return res;
+        }
+        
+        return {-1};
+        
+    }
+};
