@@ -1,0 +1,41 @@
+class Solution {
+    bool static cmp(vector<int>&v1,vector<int>&v2)
+    {
+        return v1[1]>v2[1];
+    }
+public:
+    int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
+        priority_queue<int,vector<int>,greater<int>>pq;
+        vector<int>tmp(2,0);
+        vector<vector<int>>eng;
+        for(int i=0;i<n;i++)
+        {
+            tmp[0]=speed[i];
+            tmp[1]=efficiency[i];
+            eng.push_back(tmp);
+        }
+        sort(eng.begin(),eng.end(),cmp);
+        long total=0;
+        long res=0;
+        long minE;
+        for(int i=0;i<k;i++)
+        {
+            total+=eng[i][0];
+             minE=eng[i][1];
+            res=max(res,total*minE);
+            pq.push(eng[i][0]);
+        }
+        for(int i=k;i<n;i++)
+        {
+            if(pq.top()<eng[i][0])
+            {
+                total=total-pq.top()+eng[i][0];
+                 minE=eng[i][1];
+                res=max(res,total*minE);
+                pq.pop();
+                pq.push(eng[i][0]);
+            }
+        }
+        return int(res%1000000007);
+    }
+};
