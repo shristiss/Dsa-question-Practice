@@ -1,0 +1,20 @@
+class Solution {
+    bool static cmp(int &a,int &b)
+    {
+        return abs(a)<abs(b);
+    }
+public:
+    bool canReorderDoubled(vector<int>& arr) {
+        sort(arr.begin(),arr.end(),cmp);
+       unordered_map<int,int>mp;
+        for(auto it:arr)mp[it]++;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(mp[arr[i]]==0)continue;
+            if(mp[arr[i]*2]==0)return false;
+            mp[arr[i]]--;
+            mp[arr[i]*2]--;
+        }
+        return true;
+    }
+};
