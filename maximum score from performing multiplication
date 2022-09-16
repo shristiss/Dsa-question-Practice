@@ -1,0 +1,20 @@
+class Solution {
+  vector<vector<int>>dp;
+    int helper(vector<int>& nums, vector<int>& multipliers,int i,int l,int r)
+                {
+                    if(i==multipliers.size())
+                        return 0;
+        if(dp[l][i]!=INT_MIN)return dp[l][i];
+                     int first=multipliers[i]*nums[l]+helper(nums,multipliers,i+1,l+1,r);
+                     int right=multipliers[i]*nums[r]+helper(nums,multipliers,i+1,l,r-1);
+        return dp[l][i]=max(first,right);
+                }
+public:
+    int maximumScore(vector<int>& nums, vector<int>& multipliers) {
+        int i=0,l=0,r=nums.size()-1;
+        int m=multipliers.size();
+        dp.resize(m+1);
+      dp.assign(m+1,(vector<int>(m+1,INT_MIN)));
+        return helper(nums,multipliers,i,l,r);
+    }
+};
