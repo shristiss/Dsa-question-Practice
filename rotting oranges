@@ -1,0 +1,40 @@
+class Solution {
+    void dfs(vector<vector<int>>&grid,int i,int j,int m)
+    {
+        if(i<0 || i>=grid.size() || j<0 || j>=grid[i].size())return;
+         if(grid[i][j]==0 || (1<grid[i][j] && grid[i][j]<m))return;
+       else{
+            grid[i][j]=m;
+        dfs(grid,i+1,j,m+1);
+        dfs(grid,i-1,j,m+1);
+        dfs(grid,i,j+1,m+1);
+        dfs(grid,i,j-1,m+1);
+       }   
+       
+        return;
+    }
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[i].size();j++)
+            {
+                if(grid[i][j]==2)
+                {
+                   int minutes=2;
+                    dfs(grid,i,j,minutes);
+                }
+            }
+        }
+        int ans=2;
+         for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[i].size();j++)
+            {
+                if(grid[i][j]==1)return -1;
+                ans=max(ans,grid[i][j]);
+            }
+         }
+        return ans-2;
+    }
+};
