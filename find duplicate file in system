@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<string>> findDuplicate(vector<string>& paths) {
+       unordered_map<string, vector<string> >  mp;
+        vector<vector<string>>ans;
+        for(auto &path:paths)
+        {
+            stringstream ss(path);
+            string temp,directoryname;
+            getline(ss,directoryname,' ');
+            while(ss>>temp)
+            {
+                cout<<temp<<endl;
+               string filename=temp.substr(0,temp.find('('));
+                //cout<<directoryname<<endl;
+            string fullname=directoryname+'/'+filename;
+                string filecontent=temp.substr(temp.find('(')+1,temp.find(')') - temp.find(')')-1);
+                mp[filecontent].push_back(fullname);
+                //cout<<filename<<" "<<fullname<<" "<<filecontent<<endl;
+            }
+        }
+       for (const auto& m : mp) 
+            if (m.second.size() > 1)
+                ans.push_back(m.second);
+
+        return ans;
+    }
+};
