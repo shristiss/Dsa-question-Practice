@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int convertTime(string current, string correct) {
+        int currmin=current[0]*600+current[1]*60+current[3]*10+current[4];
+        int comin=correct[0]*600+correct[1]*60+correct[3]*10+correct[4];
+        int diff=comin-currmin;
+        int finalans=0;
+        while(diff)
+        {
+            if(diff>=60)
+            {
+                int xx=diff/60;
+                finalans+=xx;
+                diff%=60;
+            }
+            if(diff>=15)
+            {
+                int xx=diff/15;
+                finalans+=xx;
+                diff%=15;
+            }
+            if(diff>=5)
+            {
+                int xx=diff/5;
+                finalans+=xx;
+                diff%=5;
+            }
+            if(diff>=0)
+            {
+                 int xx=diff/1;
+                finalans+=xx;
+                diff%=1; 
+            }
+        }
+        return finalans;
+    }
+};
