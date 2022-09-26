@@ -1,0 +1,29 @@
+class Solution {
+    int arr[26];
+    int helper(int num)
+    {
+        return arr[num]==num?num:helper(arr[num]);
+    }
+public:
+    bool equationsPossible(vector<string>& equations) {
+        for(int i=0;i<26;i++)
+        {
+            arr[i]=i;
+        }
+        for(auto it:equations)
+        {
+            if(it[1]=='=')
+            {
+                arr[helper(it[0]-'a')]=arr[helper(it[3]-'a')];
+            }
+        }
+        for(auto it:equations)
+        {
+            if(it[1]=='!')
+            {
+                if(arr[helper(it[0]-'a')]==arr[helper(it[3]-'a')])return false;
+            }
+        }
+        return true;
+    }
+};
