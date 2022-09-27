@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> shortestToChar(string s, char c) {
+      vector<int>answer;
+        int oldindex=INT_MAX;
+        int i=0,j=0,diff=INT_MAX,xx;
+        while(i<s.length() && j<s.length())
+        {cout<<i;
+            if(s[j]==c)
+            {  
+               diff=(j-i);
+                
+               // cout<<oldindex<<" "<<diff<<endl;
+                xx=min(abs(oldindex-i),diff);
+                answer.push_back(xx);
+                if(abs(j-i)<abs(oldindex-i))
+                    oldindex=j;
+              // cout<<"old="<<oldindex<<" ";
+                i++;
+                j=i;
+            }
+            else j++;
+        }
+        while(answer.size()<s.length())
+        {
+            answer.push_back(abs(oldindex-i));
+            i++;
+        }
+        return answer;
+    }
+};
