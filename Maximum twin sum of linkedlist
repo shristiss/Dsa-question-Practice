@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        int maxsum=INT_MIN,len=0;
+        ListNode *temp=head;
+        while(temp!=NULL)
+        {
+            len++;
+            temp=temp->next;
+        }
+        temp=head;
+        int i=0;
+        unordered_map<int,int>mp;
+        while(temp!=NULL)
+        {
+           int r=(len-i-1),sum=0;
+            if(mp.find(r)!=mp.end())
+            {
+                sum=mp[r]+temp->val;
+                mp.erase(r);
+            }
+            else{
+                mp.insert({i,temp->val});
+            }
+            temp=temp->next;
+            i++;
+            maxsum=max(maxsum,sum);
+        }
+        return maxsum;
+    }
+};
