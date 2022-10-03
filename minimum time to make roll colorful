@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minCost(string colors, vector<int>& neededTime) {
+        int res=0,ans=0;
+        for(int i=1;i<colors.size();i++)
+        {
+            if(colors[res]==colors[i])
+            {
+                if(neededTime[i]>neededTime[res])
+                {
+                    ans+=neededTime[res];
+                    res=i;
+                }
+                else{
+                    ans+=neededTime[i];
+                    if(colors[i+1]!=colors[res])res=i;
+                }
+            }
+            else res++;
+        }
+        return ans;
+    }
+    
+    
+};
