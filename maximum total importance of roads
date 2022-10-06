@@ -1,0 +1,18 @@
+class Solution {
+public:
+    long long maximumImportance(int n, vector<vector<int>>& roads) {
+        vector<int>degree(n,0);
+        for(auto it:roads)
+        {
+           degree[it[0]]++;
+            degree[it[1]]++;
+        }
+        sort(degree.begin(),degree.end());
+         long long x=1,ans=0;
+        for(auto it:degree)
+        {
+            ans+=it*(x++);
+        }
+        return ans;
+    }
+};
