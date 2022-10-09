@@ -1,0 +1,29 @@
+class Solution{
+    void insertbottom(stack<int>&st,int ele)
+    {
+        if(st.empty())st.push(ele);
+        else{
+            int x=st.top();
+            st.pop();
+            insertbottom(st,ele);
+            st.push(x);
+        }
+    }
+    void reverse(stack<int>&st)
+    {
+        if(!st.empty())
+        {
+            int ele=st.top();
+            st.pop();
+            reverse(st);
+            insertbottom(st,ele);
+        }
+        return;
+    }
+public:
+    stack<int> Reverse(stack<int> st){
+        if(st.size()==1)return st;
+        reverse(st);
+        return st;
+    }
+};
