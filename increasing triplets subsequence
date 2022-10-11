@@ -1,0 +1,41 @@
+// class Solution {
+// public:
+//     bool increasingTriplet(vector<int>& nums) {
+//     int n=nums.size();
+//         for(int i=0;i<n-2;i++)
+//         {
+//             int j=i+1, k=i+2;
+//             while(nums[j]>nums[i] && k<n && j<n-1)
+//             {
+//                // cout<<endl<<nums[i]<<" "<<nums[j]<<" "<<nums[k]<<endl;
+//                 if(nums[k]>nums[j])return true;
+               
+//                 if(k==n-1){
+//                     j++;
+//                     k=j+1;
+//                 }
+//                  else k++;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int one=INT_MAX,two=INT_MAX;
+        for(auto num:nums)
+        {
+            if(num<one)
+            {
+                one=num;
+            }
+            else if(one<num && num<two)
+                two=num;
+            else if(two<num)
+                return true;
+        }
+        return false;
+    }
+};
