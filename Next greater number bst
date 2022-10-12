@@ -1,0 +1,35 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+TreeNode* Solution::getSuccessor(TreeNode* A, int B) {
+    TreeNode* temp, *temp1 = NULL;
+    if (!A) {
+        return A;
+    }
+    temp = A;
+    //std::cout << temp->val << ";";
+    while (temp && temp->val != B) {
+        if (temp->val < B) {
+            temp = temp->right;
+        } else {
+            temp1 = temp;
+            temp = temp->left;
+        }
+    }
+    cout<<temp->val<<" ";
+   // Now temp is the node
+    if (temp && temp->right) {
+        temp = temp->right;
+        while (temp->left) {
+            temp = temp->left;
+        }
+        return temp;
+    }
+    return temp1;
+}
