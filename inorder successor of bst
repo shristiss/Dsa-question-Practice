@@ -1,0 +1,28 @@
+class Solution{
+  public:
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        //Your code here
+        if(x->right)
+        {
+            x=x->right;
+            while(x->left)
+            {
+                x=x->left;
+            }
+            return x;
+        }
+        Node *successor=NULL;
+        while(root)
+        {
+            if(root->data>x->data)
+            {
+                successor=root;
+                root=root->left;
+            }
+            else root=root->right;
+        }
+        return successor;
+    }
+};
