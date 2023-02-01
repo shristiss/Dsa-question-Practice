@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int i=0,j=0;
+        int n=s.size();
+        while(i<s.size())
+        {
+            if(s[j]=='a')
+            {
+                i=j;
+                if(s[j+1]=='b' && s[j+2]=='c')
+                {
+                   s=s.substr(0,i)+s.substr(j+3,n);
+                  //  cout<<s<<" ";
+                    i=0,j=0;
+                   // cout<<endl<<s[i]<<" "<<s[j]<<" ";
+                      if(s.empty())return true;
+                    else continue;
+                }
+              
+                
+            }
+            
+              j++;
+            i=j;   
+            
+           }
+        return false;
+    }
+};
