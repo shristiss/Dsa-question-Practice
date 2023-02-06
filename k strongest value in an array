@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> getStrongest(vector<int>& arr, int k) {
+        vector<pair<int,int>>vp;
+        vector<int>ans;
+        int n=arr.size(),median;
+        sort(arr.begin(),arr.end());
+        if(arr.size()%2==1)median=arr[n/2];
+        else median=arr[(n-1)/2];
+        //cout<<"median = "<<median<<endl;
+        for(int i=0;i<n;i++)
+        {
+            int x=abs(arr[i]-median);
+            cout<<x<<" ";
+            vp.push_back({x,arr[i]});
+        }
+        sort(vp.rbegin(),vp.rend());
+       // cout<<vp[0].first<<" "<<vp[0].second;
+        int i=0;
+        while(k--)
+        {
+            ans.push_back(vp[i].second);
+            i++;
+        }
+        return ans;
+    }
+};
